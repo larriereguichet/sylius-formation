@@ -5,3 +5,9 @@ sylius_ui:
                 content:
                     template: "products/_box.html.twig"
                     priority: 10
+
+sylius_theme:
+    sources:
+        filesystem:
+            directories:
+                - "%kernel.project_dir%/themes"
