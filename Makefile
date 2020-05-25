@@ -4,6 +4,7 @@ install:
 	docker-compose build
 	docker-compose up -d
 	docker-compose exec php composer install
+	docker-compose exec php bin/console sylius:install -y
 	docker-compose run --rm js yarn install
 	docker-compose run --rm js yarn run encore dev
 	docker-compose stop
