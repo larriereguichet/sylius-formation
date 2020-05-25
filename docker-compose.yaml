@@ -1,4 +1,4 @@
-version: "3"
+version: "3.4"
 services:
     db:
         image: mysql:5.7
@@ -10,7 +10,7 @@ services:
             MYSQL_DATABASE: sylius
             MYSQL_RANDOM_ROOT_PASSWORD: "yes"
         volumes:
-        - ./etc/data:/var/lib/mysql
+            - ./etc/data:/var/lib/mysql
     
     php:
         build:
@@ -22,10 +22,29 @@ services:
             - ./etc/docker/php/symfony.ini:/etc/php/7.4/cli/conf.d/symfony.ini:ro
 
     js:
-        image: node:stretch-slim
+        build:
+            context: ./etc/docker/js
+            cache_from:
+                - quay.io/sylius/php:latest
+                - quay.io/sylius/nodejs:latest
+                - quay.io/sylius/nginx:latest
+        image: quay.io/sylius/nodejs:latest
+        depends_on:
+            - php
+        environment:
+            - GULP_ENV=dev
+            - PHP_HOST=php
+            - PHP_PORT=9000
         volumes:
             - .:/home/docker/workspace/sylius
-        working_dir: /home/docker/workspace/sylius
+        ports:
+            - "35729:35729"
+#    js:
+#        build:
+#            context: ./etc/docker/js
+#        volumes:
+#            - .:/home/docker/workspace/sylius
+#        working_dir: /home/docker/workspace/sylius
 
     mailcatcher:
         image: zolweb/docker-mailcatcher:latest
