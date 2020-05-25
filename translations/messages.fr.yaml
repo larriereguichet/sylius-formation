@@ -1,0 +1,4 @@
+sylius:
+    form:
+        login:
+            username: Email ou identifiant
