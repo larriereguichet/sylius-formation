@@ -27,11 +27,15 @@ services:
     App\:
         resource: '../src/*'
         exclude: '../src/{Entity,Migrations,Tests,Kernel.php}'
-
+    
     # Controllers are imported separately to make sure services can be injected
     # as action arguments even if you don't extend any base controller class
     App\Controller\:
         resource: '../src/Controller'
+        tags: ['controller.service_arguments']
+
+    App\Controller\Product\ProductController:
+        autowire: false
         tags: ['controller.service_arguments']
 
     App\Payment\Factory\AppGatewayFactory: ~
@@ -53,3 +57,6 @@ services:
         public: true
         tags:
             - {name: payum.action, factory: black_card_paiement, alias: payum.ation.capture}
+
+    App\Provider\APIProvider:
+        public: true
