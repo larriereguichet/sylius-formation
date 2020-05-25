@@ -19,7 +19,7 @@ class Product extends BaseProduct
      *
      * @ORM\Column(name="sku", type="string", nullable=false)
      */
-    private $sku;
+    private $sku = '';
 
     public function getSku(): string
     {
