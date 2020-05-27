@@ -1,0 +1,8 @@
+winzou_state_machine:
+    sylius_order_payment:
+        callbacks:
+            after:
+                sylius_order_paid:
+                    on: ["pay"]
+                    do: ["@App\\Payment\\Logger\\PaymentLogger", "logPayment"]
+                    args: ["object"]

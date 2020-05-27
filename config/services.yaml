@@ -53,3 +53,6 @@ services:
         public: true
         tags:
             - {name: payum.action, factory: black_card_paiement, alias: payum.ation.capture}
+
+    App\Payment\Logger\PaymentLogger:
+        public: true
