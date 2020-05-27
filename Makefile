@@ -7,6 +7,7 @@ install:
 	docker-compose exec php bin/console sylius:install -n
 	docker-compose run --rm js yarn install
 	docker-compose run --rm js yarn run encore dev
+	docker-compose exec php bin/console assets:install --symlink
 	docker-compose stop
 
 up:
@@ -19,7 +20,8 @@ php.zsh:
 	docker-compose exec php zsh
 
 js.bash:
-	docker-compose exec js bash
+	docker-compose run --rm js bash
 
 js.build:
 	docker-compose run --rm js yarn run encore dev
+	# yarn build ????????
