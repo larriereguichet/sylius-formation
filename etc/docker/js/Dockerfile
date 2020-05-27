@@ -9,6 +9,7 @@ RUN apt-get update && \
         ca-certificates \
         curl \
         git \
+        g++\
         gnupg \
         imagemagick \
         less \
