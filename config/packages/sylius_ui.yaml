@@ -1,0 +1,7 @@
+sylius_ui:
+    events:
+        sylius.shop.product.index.box:
+            blocks:
+                content:
+                    template: "products/_box.html.twig"
+                    priority: 10
