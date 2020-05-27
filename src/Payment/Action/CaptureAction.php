@@ -6,6 +6,7 @@ use Payum\Core\Action\ActionInterface;
 use Payum\Core\Request\Capture;
 use Psr\Log\LoggerInterface;
 use Sylius\Component\Core\Model\PaymentInterface;
+use Sylius\Component\Order\Context\CartContextInterface;
 
 class CaptureAction implements ActionInterface
 {
@@ -14,15 +15,21 @@ class CaptureAction implements ActionInterface
      */
     private $logger;
 
-    public function __construct(LoggerInterface $logger)
+    /**
+     * @var CartContextInterface
+     */
+    private $context;
+
+    public function __construct(LoggerInterface $logger, CartContextInterface $context)
     {
         $this->logger = $logger;
+        $this->context = $context;
     }
 
     public function execute($request)
     {
         $payment = $request->getModel();
-
+        $cart = $this->context->getCart();
         // TODO call an API, or a custom binary
         $this->logger->debug('Calling the fake Payment API, yeah !!!');
 

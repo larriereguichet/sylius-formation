@@ -1,0 +1,8 @@
+add_payment_data:
+    path: /{_locale}/checkout/add-payment-data
+    controller: App\Controller\AddPaymentDataAction
+    defaults:
+        _sylius:
+            state_machine:
+                graph: sylius_order_checkout
+                transition: add_payment_data

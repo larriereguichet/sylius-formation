@@ -56,3 +56,12 @@ services:
 
     App\Payment\Logger\PaymentLogger:
         public: true
+
+    winzou\Bundle\StateMachineBundle\Command\winzouStateMachineDebugCommand:
+        tags:
+            - {name: console.command}
+
+    App\Controller\AddPaymentDataAction:
+        public: true
+        arguments:
+            $repository: '@sylius.repository.order'
