@@ -33,3 +33,23 @@ services:
     App\Controller\:
         resource: '../src/Controller'
         tags: ['controller.service_arguments']
+
+    App\Payment\Factory\AppGatewayFactory: ~
+
+    app.black_card_paiement:
+        class: Payum\Core\Bridge\Symfony\Builder\GatewayFactoryBuilder
+        arguments:
+            - '@App\Payment\Factory\AppGatewayFactory'
+        tags:
+            - {name: payum.gateway_factory_builder, factory: black_card_paiement}
+
+    App\Form\Type\BlackCardConfigurationType:
+        tags:
+            - {name: form.type}
+            - {name: sylius.gateway_configuration_type, type: black_card_paiement, label: 'Paiement par BlackCard'}
+            
+
+    App\Payment\Action\CaptureAction:
+        public: true
+        tags:
+            - {name: payum.action, factory: black_card_paiement, alias: payum.ation.capture}
