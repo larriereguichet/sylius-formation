@@ -1,0 +1,14 @@
+{
+    "name": "formation/crimson-theme",
+    "authors": [
+        {
+            "name": "JohnKrovitch",
+            "email": "test@example.com"
+        }
+    ],
+    "extra": {
+        "sylius-theme": {
+            "title": "Formation Theme"
+        }
+    }
+}

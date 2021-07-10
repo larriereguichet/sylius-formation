@@ -1,9 +1,7 @@
 imports:
     - { resource: "@SyliusCoreBundle/Resources/config/app/config.yml" }
-
     - { resource: "@SyliusAdminBundle/Resources/config/app/config.yml" }
     - { resource: "@SyliusAdminApiBundle/Resources/config/app/config.yml" }
-
     - { resource: "@SyliusShopBundle/Resources/config/app/config.yml" }
 
 parameters:
@@ -143,6 +141,7 @@ sylius_product:
         product:
             classes:
                 model: App\Entity\Product\Product
+                controller: App\Controller\Product\ProductController
             translation:
                 classes:
                     model: App\Entity\Product\ProductTranslation
